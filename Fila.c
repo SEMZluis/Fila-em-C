@@ -1,14 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-typedef struct {
-    int *array;   // Ponteiro para o array que irá guardar os dados (alocado dinamicamente)
-    int primeiro;
-    int ultimo;
-    int tamanho;
-    int capacidade;
-} Fila;
-
+#include "Fila.h"
 
 /**
  *  CONSTRUTOR DA FILA
@@ -140,13 +132,13 @@ int verAntigo(Fila* fila) {
  *      2. Se a fila não está vazia, itera pelo array da fila.
  *      4. Se encontrar o valor, retornar o índice. Se não encontrar, retornar -1.
  */
-int procurarIndiceDe(Fila* fila, int v) {
+int procurarIndiceDe(Fila* fila, int valor) {
     if (estaVazia(fila)) {
         printf("Tá vazia a fila!");
     } else {
         for (int i = 0; i < fila->tamanho; i++) {
             int pos = (fila->primeiro+i) % fila->capacidade;
-            if (fila->array[pos] == v) return i;
+            if (fila->array[pos] == valor) return i;
         }
     }
 
@@ -164,7 +156,7 @@ int procurarIndiceDe(Fila* fila, int v) {
  *      3. Iterar pelo array da fila armazenando na variável de índice quando o elemento é encontrado.
  *      4. Retorna o índice. Se o valor não é encontrado, retorna -1.
  */
-int procurarUltimoIndiceDe(Fila* fila, int v) {
+int procurarUltimoIndiceDe(Fila* fila, int valor) {
     int indice = -1;
 
     if (estaVazia(fila)) {
@@ -172,7 +164,7 @@ int procurarUltimoIndiceDe(Fila* fila, int v) {
     } else {
         for (int i = fila->tamanho-1; i >= 0; i--) {
             int pos = (fila->ultimo+i) % fila->tamanho;
-            if (fila->array[pos] == v) return i;
+            if (fila->array[pos] == valor) return i;
         }
     }
     
